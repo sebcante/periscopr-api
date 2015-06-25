@@ -1,9 +1,9 @@
-<?php namespace Cjhbtn\Periscopr\Requests;
+<?php namespace Cjhbtn\Periscopr\Api\Requests;
 
 /**
  * Interface ApiRequest
  *
- * @package Cjhbtn\Periscopr\Requests
+ * @package Cjhbtn\Periscopr\Api\Requests
  */
 interface ApiRequest {
 
@@ -24,7 +24,14 @@ interface ApiRequest {
     /**
      * Returns the API response handler object name
      *
-     * @return \Cjhbtn\Periscopr\Responses\ApiResponse
+     * @return \Cjhbtn\Periscopr\Api\Responses\ApiResponse
      */
     public function getResponseHandler();
+
+    /**
+     * Returns the Payload type for the parameters on the endpoint
+     *
+     * @return string
+     */
+    public function getPayloadType();
 }

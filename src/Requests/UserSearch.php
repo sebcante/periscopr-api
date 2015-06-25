@@ -1,24 +1,26 @@
-<?php namespace Cjhbtn\Periscopr\Requests;
+<?php namespace Cjhbtn\Periscopr\Api\Requests;
 
-/**
- * Class UserSearch
- *
- * Search the Periscope user database for usernames that match the provided search string.
- *
- * @package Cjhbtn\Periscopr\Requests
- */
 class UserSearch extends BaseRequest {
 
+    private $allowed_params = [
+        'search' => true,
+    ];
+
     /**
-     * Class constructor
-     *
-     * @param string $search A username search string
-     */
-    public function __construct($search) {
+    * Class constructor
+    *
+    */
+    public function __construct($params = []) {
         $this->endpoint = 'userSearch';
-        $this->parameters = [
-            'search' => $search
-        ];
-        $this->response = 'Cjhbtn\\Periscopr\\Responses\\UserSearch';
+        $this->payload_type = 'json';
+        foreach ($this->allowed_params as $name => $required) {
+            if (!isset($params[$name]) && $required) {
+                throw new \InvalidArgumentException("Missing required parameter: $name");
+            }
+            elseif (isset($params[$name])) {
+                $this->parameters[$name] = $params[$name];
+            }
+        }
+        $this->response = 'Cjhbtn\\Periscopr\\Api\\Responses\\UserSearch';
     }
 }

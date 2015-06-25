@@ -1,9 +1,9 @@
-<?php namespace Cjhbtn\Periscopr\Responses;
+<?php namespace Cjhbtn\Periscopr\Api\Responses;
 
 /**
  * Interface ApiResponse
  *
- * @package Cjhbtn\Periscopr\Responses
+ * @package Cjhbtn\Periscopr\Api\Responses
  */
 interface ApiResponse {
 

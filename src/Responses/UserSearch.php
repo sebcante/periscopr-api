@@ -1,12 +1,8 @@
-<?php namespace Cjhbtn\Periscopr\Responses;
+<?php namespace Cjhbtn\Periscopr\Api\Responses;
 
-/**
- * Class UserSearch
- *
- * @package Cjhbtn\Periscopr\Responses
- */
 class UserSearch extends BaseResponse {
 
-    /** @var \Cjhbtn\Periscopr\Models\User[] $results */
-    public $results;
+    /** @var  \Cjhbtn\Periscopr\Api\Models\User[] $results */
+    public $results = [ ];
+
 }

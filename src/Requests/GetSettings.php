@@ -1,20 +1,25 @@
-<?php namespace Cjhbtn\Periscopr\Requests;
+<?php namespace Cjhbtn\Periscopr\Api\Requests;
 
-/**
- * Class GetSettings
- *
- * Retrieve all the user specific settings
- *
- * @package Cjhbtn\Periscopr\Requests
- */
 class GetSettings extends BaseRequest {
 
+    private $allowed_params = [
+    ];
+
     /**
-     * Class constructor
-     *
-     */
-    public function __construct() {
+    * Class constructor
+    *
+    */
+    public function __construct($params = []) {
         $this->endpoint = 'getSettings';
-        $this->response = 'Cjhbtn\\Periscopr\\Responses\\GetSettings';
+        $this->payload_type = 'json';
+        foreach ($this->allowed_params as $name => $required) {
+            if (!isset($params[$name]) && $required) {
+                throw new \InvalidArgumentException("Missing required parameter: $name");
+            }
+            elseif (isset($params[$name])) {
+                $this->parameters[$name] = $params[$name];
+            }
+        }
+        $this->response = 'Cjhbtn\\Periscopr\\Api\\Responses\\GetSettings';
     }
 }

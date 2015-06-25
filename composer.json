@@ -23,7 +23,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Cjhbtn\\Periscopr\\": "src/"
+      "Cjhbtn\\Periscopr\\Api\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests/BaseTest.php"
+    ]
   }
 }

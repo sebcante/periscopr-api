@@ -1,7 +1,7 @@
-<?php namespace Cjhbtn\Periscopr;
+<?php namespace Cjhbtn\Periscopr\Api;
 
-use Cjhbtn\Periscopr\Requests\ApiRequest;
-use Cjhbtn\Periscopr\Responses\ApiResponse;
+use Cjhbtn\Periscopr\Api\Requests\ApiRequest;
+use Cjhbtn\Periscopr\Api\Responses\ApiResponse;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
@@ -53,7 +53,7 @@ class Client {
             $response = $this->guzzle->request(
                 "POST",
                 $request->getEndpoint(),
-                $this->encodeParameters($request->getParameters())
+                $this->encodeParameters($request)
             );
             $handler->setStatusCode($response->getStatusCode());
             if ($response->getStatusCode() == 200) {
@@ -89,10 +89,34 @@ class Client {
     /**
      * JSON encode the parameters as the body of the request
      *
+     * @param ApiRequest $request
+     * @return array
+     * @throws \RuntimeException
+     */
+    protected function encodeParameters(ApiRequest $request) {
+        if ($request->getPayloadType() == 'json') {
+            return ['json' => array_merge($this->default_params, $request->getParameters())];
+        }
+        if ($request->getPayloadType() == 'multipart') {
+            return ['multipart' => $this->buildMultipart(array_merge($this->default_params, $request->getParameters()))];
+        }
+        if ($request->getPayloadType() == 'query') {
+            return ['query' => $request->getParameters()];
+        }
+        throw new \RuntimeException("Request specified an unknown payload type");
+    }
+
+    /**
+     * Build parameter array for a Multipart request
+     *
      * @param array $params
      * @return array
      */
-    protected function encodeParameters($params) {
-        return ['body' => json_encode(array_merge($this->default_params, $params))];
+    protected function buildMultipart($params) {
+        $multipartParams = [ ];
+        foreach ($params as $name => $value) {
+            $param = ['name' => $name, 'contents' => $value];
+        }
+        return $multipartParams;
     }
 }

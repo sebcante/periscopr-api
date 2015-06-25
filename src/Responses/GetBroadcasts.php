@@ -1,12 +1,8 @@
-<?php namespace Cjhbtn\Periscopr\Responses;
+<?php namespace Cjhbtn\Periscopr\Api\Responses;
 
-/**
- * Class GetBroadcasts
- *
- * @package Cjhbtn\Periscopr\Responses
- */
 class GetBroadcasts extends BaseResponse {
 
-    /** @var \Cjhbtn\Periscopr\Models\Broadcast[] $results Array of Broadcasts */
+    /** @var  \Cjhbtn\Periscopr\Api\Models\Broadcast[] $results */
     public $results = [ ];
+
 }

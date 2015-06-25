@@ -1,12 +1,8 @@
-<?php namespace Cjhbtn\Periscopr\Responses;
+<?php namespace Cjhbtn\Periscopr\Api\Responses;
 
-/**
- * Class BlockAdd
- *
- * @package Cjhbtn\Periscopr\Responses
- */
 class BlockAdd extends BaseResponse {
 
-    /** @var boolean $success */
+    /** @var  boolean $success */
     public $success;
+
 }

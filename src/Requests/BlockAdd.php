@@ -1,24 +1,26 @@
-<?php namespace Cjhbtn\Periscopr\Requests;
+<?php namespace Cjhbtn\Periscopr\Api\Requests;
 
-/**
- * Class BlockAdd
- *
- * Block a user with the given for Periscope User ID.
- *
- * @package Cjhbtn\Periscopr\Requests
- */
 class BlockAdd extends BaseRequest {
 
+    private $allowed_params = [
+        'to' => true,
+    ];
+
     /**
-     * Class constructor
-     *
-     * @param string $user_id Periscope User ID
-     */
-    public function __construct($user_id) {
+    * Class constructor
+    *
+    */
+    public function __construct($params = []) {
         $this->endpoint = 'block/add';
-        $this->parameters = [
-            'to' => $user_id
-        ];
-        $this->response = 'Cjhbtn\\Periscopr\\Responses\\BlockAdd';
+        $this->payload_type = 'json';
+        foreach ($this->allowed_params as $name => $required) {
+            if (!isset($params[$name]) && $required) {
+                throw new \InvalidArgumentException("Missing required parameter: $name");
+            }
+            elseif (isset($params[$name])) {
+                $this->parameters[$name] = $params[$name];
+            }
+        }
+        $this->response = 'Cjhbtn\\Periscopr\\Api\\Responses\\BlockAdd';
     }
 }

@@ -16,7 +16,7 @@
          * created successfully and is usable
          */
         public function testCanCreateInstance() {
-            $this->assertInstanceOf("Cjhbtn\\Periscopr\\Client", $this->client);
+            $this->assertInstanceOf("Cjhbtn\\Periscopr\\Api\\Client", $this->client);
         }
 
         /**
@@ -34,7 +34,12 @@
          */
         public function testBlankLoginTwitterRequestReturns401() {
             $response = $this->client->execute(
-                new \Cjhbtn\Periscopr\Requests\LoginTwitter("", "", "")
+                new \Cjhbtn\Periscopr\Api\Requests\LoginTwitter([
+                    "session_key" => "",
+                    "session_secret" => "",
+                    "user_name" => "",
+                    "user_id" => ""
+                ])
             );
             $this->assertEquals(401, $response->getStatusCode());
         }
@@ -42,12 +47,12 @@
     }
 
 
-    class BlankRequest extends \Cjhbtn\Periscopr\Requests\BaseRequest {
+    class BlankRequest extends \Cjhbtn\Periscopr\Api\Requests\BaseRequest {
         public function __construct() {
             $this->response = "BlankResponse";
         }
     }
 
-    class BlankResponse extends \Cjhbtn\Periscopr\Responses\BaseResponse {
+    class BlankResponse extends \Cjhbtn\Periscopr\Api\Responses\BaseResponse {
 
     }

@@ -1,12 +1,8 @@
-<?php namespace Cjhbtn\Periscopr\Responses;
+<?php namespace Cjhbtn\Periscopr\Api\Responses;
 
-/**
- * Class SetSettings
- *
- * @package Cjhbtn\Periscopr\Responses
- */
 class SetSettings extends BaseResponse {
 
-    /** @var boolean $success */
+    /** @var  boolean $success */
     public $success;
+
 }

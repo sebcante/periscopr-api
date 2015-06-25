@@ -9,7 +9,9 @@
          *
          */
         public function testGetInvalidBroadcastIdReturnsEmpty() {
-            $broadcasts = new \Cjhbtn\Periscopr\Requests\GetBroadcasts("-1");
+            $broadcasts = new \Cjhbtn\Periscopr\Api\Requests\GetBroadcasts([
+                "broadcast_ids" => ["-1"]
+            ]);
             $response = $this->client->execute($broadcasts);
             $this->assertEquals(200, $response->getStatusCode());
             $this->assertEmpty($response->results);

@@ -1,21 +1,17 @@
-<?php namespace Cjhbtn\Periscopr\Responses;
+<?php namespace Cjhbtn\Periscopr\Api\Responses;
 
-/**
- * Class LoginTwitter
- *
- * @package Cjhbtn\Periscopr\Responses
- */
 class LoginTwitter extends BaseResponse {
 
-    /** @var string $cookie */
+    /** @var  string $cookie */
     public $cookie;
 
-    /** @var \Cjhbtn\Periscopr\Models\User */
+    /** @var  \Cjhbtn\Periscopr\Api\Models\User $user */
     public $user;
 
-    /** @var string $suggested_username */
+    /** @var  string $suggested_username */
     public $suggested_username;
 
-    /** @var array $settings */
+    /** @var  \Cjhbtn\Periscopr\Api\Models\UserSettings $settings */
     public $settings;
+
 }

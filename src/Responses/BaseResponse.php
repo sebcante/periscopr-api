@@ -1,11 +1,11 @@
-<?php namespace Cjhbtn\Periscopr\Responses;
+<?php namespace Cjhbtn\Periscopr\Api\Responses;
 
-use Cjhbtn\Periscopr\Models\BaseModel;
+use Cjhbtn\Periscopr\Api\Models\BaseModel;
 
 /**
  * Class BaseResponse
  *
- * @package Cjhbtn\Periscopr\Responses
+ * @package Cjhbtn\Periscopr\Api\Responses
  */
 abstract class BaseResponse implements ApiResponse {
 
@@ -61,7 +61,7 @@ abstract class BaseResponse implements ApiResponse {
      * @return BaseModel
      */
     protected function getModel($name, $values) {
-        $class_name = "\\Cjhbtn\\Periscopr\\Models\\" . $name;
+        $class_name = "\\Cjhbtn\\Periscopr\\Api\\Models\\" . $name;
 
         return $class_name::create($values);
     }

@@ -1,9 +1,9 @@
-<?php namespace Cjhbtn\Periscopr\Requests;
+<?php namespace Cjhbtn\Periscopr\Api\Requests;
 
 /**
  * Class BaseRequest
  *
- * @package Cjhbtn\Periscopr\Requests
+ * @package Cjhbtn\Periscopr\Api\Requests
  */
 abstract class BaseRequest implements ApiRequest {
 
@@ -13,7 +13,10 @@ abstract class BaseRequest implements ApiRequest {
     /** @var string $endpoint */
     protected $endpoint   = '';
 
-    /** @var \Cjhbtn\Periscopr\Responses\ApiResponse $response */
+    /** @var string $payload_type */
+    protected $payload_type = 'json';
+
+    /** @var \Cjhbtn\Periscopr\Api\Responses\ApiResponse $response */
     protected $response;
 
     /**
@@ -37,9 +40,18 @@ abstract class BaseRequest implements ApiRequest {
     /**
      * Returns the API response handler object name
      *
-     * @return \Cjhbtn\Periscopr\Responses\ApiResponse
+     * @return \Cjhbtn\Periscopr\Api\Responses\ApiResponse
      */
     public function getResponseHandler() {
         return $this->response;
+    }
+
+    /**
+     * Returns the Payload type for the parameters on the endpoint
+     *
+     * @return string
+     */
+    public function getPayloadType() {
+        return $this->payload_type;
     }
 }

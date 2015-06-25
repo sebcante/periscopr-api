@@ -11,7 +11,9 @@ cjhbtn/periscopr-api
 
 **Git Repository**: https://github.com/cjhbtn/periscopr-api.git
 
-**Documenation**: https://github.com/cjhbtn/periscopr-api/wiki/Home
+**Unofficial API Documenation**: http://docs.periscopr.uk
+
+**Code Examples**: https://github.com/cjhbtn/periscopr-examples
 
 ----------
 
@@ -42,8 +44,6 @@ all future requests.
 
 **PLEASE SEE https://tokenr.periscopr.uk FOR INFORMATION ON GENERATING TOKENS**
 
-**YOU CAN ALSO E-MAIL chris-at-periscopr-dot-uk WITH DETAILS OF YOUR PROJECT TO GET ACCESS TO TOKENR**
-
 !! **NOTE** !!
 
 ----------
@@ -59,14 +59,13 @@ Create a new file, including the Composer autoloader file:
         require_once __DIR__ . '/vendor/autoload.php';
     
         /* Create a new instance of the API Client */
-        $periscopeClient = new Cjhbtn\Periscopr\Client();
+        $periscopeClient = new Cjhbtn\Periscopr\Api\Client();
     
         /* Prepare a LoginTwitter request with our OAuth credentials */
-        $loginRequest = new Cjhbtn\Periscopr\Requests\LoginTwitter(
-            'OAUTH_TOKEN GOES HERE',
-            'OAUTH_TOKEN_SECRET GOES HERE',
-            'TWITTER_USERNAME GOES HERE'
-        );
+        $loginRequest = new Cjhbtn\Periscopr\Api\Requests\LoginTwitter([
+            'session_key'    => 'OAUTH_TOKEN GOES HERE',
+            'session_secret' => 'OAUTH_TOKEN_SECRET GOES HERE'
+        ]);
     
         /* Execute the request against the API */
         $loginResponse = $periscopeClient->execute($loginRequest);
@@ -80,7 +79,7 @@ Create a new file, including the Composer autoloader file:
         $periscopeClient->setCookie($loginResponse->cookie);
     
         /* Prepare a new GetFeedLive request */
-        $liveBroadcastsRequest = new Cjhbtn\Periscopr\Requests\GetFeedLive();
+        $liveBroadcastsRequest = new Cjhbtn\Periscopr\Api\Requests\LiveBroadcastFeed();
     
         /* Execute the request against the API */
         $liveBroadcastsResponse = $periscopeClient->execute($liveBroadcastsRequest);

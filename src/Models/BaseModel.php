@@ -1,4 +1,4 @@
-<?php namespace Cjhbtn\Periscopr\Models;
+<?php namespace Cjhbtn\Periscopr\Api\Models;
 
 abstract class BaseModel {
 

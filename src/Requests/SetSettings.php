@@ -1,28 +1,26 @@
-<?php namespace Cjhbtn\Periscopr\Requests;
+<?php namespace Cjhbtn\Periscopr\Api\Requests;
 
-/**
- * Class SetSettings
- *
- * Set the user specific settings
- *
- * @package Cjhbtn\Periscopr\Requests
- */
 class SetSettings extends BaseRequest {
 
+    private $allowed_params = [
+        'settings' => true,
+    ];
+
     /**
-     * Class constructor
-     *
-     * @param boolean $auto_save_to_camera
-     * @param boolean $push_to_follower
-     */
-    public function __construct($auto_save_to_camera, $push_to_follower) {
+    * Class constructor
+    *
+    */
+    public function __construct($params = []) {
         $this->endpoint = 'setSettings';
-        $this->parameters = [
-            'settings' => [
-                'auto_save_to_camera' => $auto_save_to_camera,
-                'push_new_follower' => $push_to_follower
-            ]
-        ];
-        $this->response = 'Cjhbtn\\Periscopr\\Responses\\SetSettings';
+        $this->payload_type = 'json';
+        foreach ($this->allowed_params as $name => $required) {
+            if (!isset($params[$name]) && $required) {
+                throw new \InvalidArgumentException("Missing required parameter: $name");
+            }
+            elseif (isset($params[$name])) {
+                $this->parameters[$name] = $params[$name];
+            }
+        }
+        $this->response = 'Cjhbtn\\Periscopr\\Api\\Responses\\SetSettings';
     }
 }
