@@ -80,4 +80,10 @@ class Broadcast extends BaseModel {
     /** @var  boolean $featured */
     public $featured;
 
+    /** @var  integer $n_watching */
+    public $n_watching;
+
+    /** @var  integer $n_web_watching */
+    public $n_web_watching;
+
 }
