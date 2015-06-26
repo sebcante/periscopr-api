@@ -11,7 +11,7 @@ use GuzzleHttp\Exception\ServerException;
  *
  * @package Cjhbtn\Periscopr
  */
-class Client {
+class Client implements ClientInterface {
 
     /** @var GuzzleClient $guzzle */
     protected $guzzle;
