@@ -1,9 +1,9 @@
 <?php namespace Cjhbtn\Periscopr\Api\Requests;
 
-class UpdateDisplayName extends BaseRequest {
+class GetUserPublic extends BaseRequest {
 
     private $allowed_params = [
-        'display_name' => true,
+        'user_id' => true,
     ];
 
     /**
@@ -11,8 +11,8 @@ class UpdateDisplayName extends BaseRequest {
     *
     */
     public function __construct($params = []) {
-        $this->endpoint = 'updateDisplayName';
-        $this->payload_type = 'json';
+        $this->endpoint = 'getUserPublic';
+        $this->payload_type = 'query';
         foreach ($this->allowed_params as $name => $required) {
             if (!isset($params[$name]) && $required) {
                 throw new \InvalidArgumentException("Missing required parameter: $name");
@@ -21,6 +21,6 @@ class UpdateDisplayName extends BaseRequest {
                 $this->parameters[$name] = $params[$name];
             }
         }
-        $this->response = 'Cjhbtn\\Periscopr\\Api\\Responses\\UpdateDisplayName';
+        $this->response = 'Cjhbtn\\Periscopr\\Api\\Responses\\GetUserPublic';
     }
 }
