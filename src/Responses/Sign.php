@@ -30,6 +30,7 @@ class Sign extends BaseResponse {
      */
     public $message;
 
+    /** @var string $channel */
     public $channel;
 
 }
